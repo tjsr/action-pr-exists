@@ -1,5 +1,5 @@
-name: 'tjsr/gh-util-actions/pr-exists'
-description: Update an npm dependency and raise a PR
+name: 'tjsr/action-pr-exists'
+description: Check that a PR by a given name exists in a repo.
 author: Tim Rowe <tim@tjsr.id.au>
 inputs:
   token:
