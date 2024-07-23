@@ -1,0 +1,33 @@
+name: 'tjsr/gh-util-actions/pr-exists'
+description: Update an npm dependency and raise a PR
+author: Tim Rowe <tim@tjsr.id.au>
+inputs:
+  token:
+    type: string
+    description: 'The GitHub token to use for PR creation'
+    required: true
+  branch:
+    type: string
+    description: 'Name of the branch to determine whether a PR exists for'
+    required: true
+  repository:
+    type: string
+    description: 'Github repository to check for PR existence in'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+  - name: Set script path
+    shell: bash
+    run: |
+      echo "SCRIPT_DIR=$GITHUB_ACTION_PATH/scripts" >> $GITHUB_ENV
+
+  - name: Check if PR exists
+    id: check-pr-exists
+    shell: bash
+    env:
+      GITHUB_TOKEN: ${{ inputs.token }}
+      BRANCH: ${{ inputs.branch }}
+      GITHUB_REPOSITORY: ${{ inputs.repository }}
+    run: . $SCRIPT_DIR/check-pr-exists.sh
