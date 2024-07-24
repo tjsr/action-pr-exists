@@ -13,26 +13,26 @@ if [ -z "$GITHUB_REPOSITORY" ]; then
     exit 1
 fi
 
-echo "INPUT_BRANCH_NAME: $INPUT_BRANCH_NAME"
-echo "BRANCH_NAME: $BRANCH_NAME"
+echo "INPUT_BRANCH: $INPUT_BRANCH"
+echo "BRANCH: $BRANCH"
 
-if [ -z "$BRANCH_NAME" ]; then
-  echo "BRANCH_NAME must be set.  It must point to the name of the branch that the PR will be created to."
+if [ -z "$BRANCH" ]; then
+  echo "BRANCH must be set.  It must point to the name of the branch that the PR will be created to."
   exit 1
 fi
 
-echo "Checking for PR in $GITHUB_REPOSITORY at $BRANCH_NAME"
+echo "Checking for PR in $GITHUB_REPOSITORY at $BRANCH"
 
 prCount=$(gh pr list \
     --repo "$GITHUB_REPOSITORY" \
-    --head "$BRANCH_NAME" \
+    --head "$BRANCH" \
     --json number --jq '. | length'
     )
 
 if [ "$prCount" -gt 0 ]; then
-    echo "Branch already exists at $BRANCH_NAME - no PR will be created."
+    echo "Branch already exists at $BRANCH - no PR will be created."
     echo "exists=true" >> "$GITHUB_OUTPUT"
 else
-    echo "PR will be created at $BRANCH_NAME"
+    echo "PR will be created at $BRANCH"
     echo "exists=false" >> "$GITHUB_OUTPUT"
 fi
