@@ -29,9 +29,9 @@ prCount=$(gh pr list \
     )
 
 if [ "$prCount" -gt 0 ]; then
-    echo "Branch already exists at $BRANCH - no PR will be created."
+    echo "Branch already exists at $BRANCH on $GITHUB_REPOSITORY - no PR will be created."
     echo "exists=true" >> "$GITHUB_OUTPUT"
 else
-    echo "PR will be created at $BRANCH"
+    echo "PR for $BRANCH on $GITHUB_REPOSITORY does not exist."
     echo "exists=false" >> "$GITHUB_OUTPUT"
 fi
