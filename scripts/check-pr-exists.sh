@@ -13,7 +13,6 @@ if [ -z "$GITHUB_REPOSITORY" ]; then
     exit 1
 fi
 
-echo "INPUT_BRANCH: $INPUT_BRANCH"
 echo "BRANCH: $BRANCH"
 
 if [ -z "$BRANCH" ]; then
