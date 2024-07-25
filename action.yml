@@ -30,4 +30,6 @@ runs:
       GITHUB_TOKEN: ${{ inputs.token }}
       BRANCH: ${{ inputs.branch }}
       GITHUB_REPOSITORY: ${{ inputs.repository }}
-    run: . $SCRIPT_DIR/check-pr-exists.sh
+    run: |
+      . $SCRIPT_DIR/check-pr-exists.sh
+      echo "action-pr-exists completed."
